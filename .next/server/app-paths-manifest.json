@@ -1,3 +1,7 @@
 {
+  "/_not-found": "app/_not-found.js",
+  "/security/page": "app/security/page.js",
+  "/decrypt/page": "app/decrypt/page.js",
+  "/encrypt/page": "app/encrypt/page.js",
   "/page": "app/page.js"
 }

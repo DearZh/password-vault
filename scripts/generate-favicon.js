@@ -17,6 +17,13 @@ async function generateFavicon() {
       return;
     }
     
+    // 确保public目录存在
+    try {
+      await fs.access(publicDir);
+    } catch (err) {
+      await fs.mkdir(publicDir, { recursive: true });
+    }
+    
     // 生成16x16 favicon
     await sharp(svgPath)
       .resize(16, 16)
@@ -51,13 +58,17 @@ async function generateFavicon() {
     
     console.log('Favicons generated successfully!');
   } catch (error) {
-    console.error('Error generating favicons:', error);
+    console.error('Error generating favicons:', error.message);
+    // 即使出错也不中断构建过程
+    console.log('Continuing with build process...');
   }
 }
 
 // 只有直接运行此脚本时才执行生成函数
 if (require.main === module) {
-  generateFavicon();
+  generateFavicon().then(() => {
+    console.log('Favicon generation script completed');
+  });
 }
 
 module.exports = { generateFavicon };

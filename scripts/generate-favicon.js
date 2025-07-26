@@ -6,10 +6,16 @@ const path = require('path');
 // 确保public目录存在
 const publicDir = path.join(__dirname, '../public');
 
-// 从SVG生成不同尺寸的favicon
 async function generateFavicon() {
   try {
+    // 检查SVG文件是否存在
     const svgPath = path.join(publicDir, 'icon.svg');
+    try {
+      await fs.access(svgPath);
+    } catch (err) {
+      console.log('SVG图标文件不存在，跳过生成favicon');
+      return;
+    }
     
     // 生成16x16 favicon
     await sharp(svgPath)
@@ -49,4 +55,9 @@ async function generateFavicon() {
   }
 }
 
-generateFavicon();
+// 只有直接运行此脚本时才执行生成函数
+if (require.main === module) {
+  generateFavicon();
+}
+
+module.exports = { generateFavicon };

@@ -1,1 +1,12 @@
 node_modules
+.next
+out
+dist
+.env*
+!.env.example
+build
+public/favicon*.png
+public/apple-touch-icon.png
+.vercel
+*.log
+.DS_Store

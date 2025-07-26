@@ -8,7 +8,8 @@
     "prebuild": "node scripts/generate-favicon.js",
     "start": "next start",
     "lint": "next lint",
-    "predev": "node scripts/generate-favicon.js"
+    "predev": "node scripts/generate-favicon.js",
+    "clean": "rm -rf .next"
   },
   "dependencies": {
     "next": "14.0.0",
